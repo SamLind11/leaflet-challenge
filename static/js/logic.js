@@ -28,7 +28,7 @@ d3.json(url).then(response => {
 });
 
 function markerSize(magnitude) {
-    return magnitude * 50000;
+    return Math.sqrt(magnitude) * 40000;
 }
 
 function getColor(d) {
