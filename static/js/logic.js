@@ -16,6 +16,7 @@ url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojs
 d3.json(url).then(response => {
     features = response.features
 
+    // Create a circle marker for each earthquake in the features array.
     for (let i = 0; i < features.length; i++) {
         let feature = features[i];
         let location = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
@@ -27,10 +28,12 @@ d3.json(url).then(response => {
     }
 });
 
+// Function which determines the size of the circle marker.
 function markerSize(magnitude) {
     return Math.sqrt(magnitude) * 40000;
 }
 
+// Function which assigns a color based on the input magnitude.  
 function getColor(d) {
     return d > 9 ? '#FF0D0D' :
            d > 7.5  ? '#FF4E11' :
@@ -50,9 +53,10 @@ info.onAdd = function() {
     return div;
 };
 
+// Add the legend template to the map.
 info.addTo(myMap);
 
-
+// Generates the legend for the map.
 document.querySelector(".legend").innerHTML = [
     "<section style=" + ">",
     "<h2>Legend</h2>",
